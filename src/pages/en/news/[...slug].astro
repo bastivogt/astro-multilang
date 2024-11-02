@@ -1,0 +1,35 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+console.log(Astro.params);
+const { slug } = Astro.params;
+const newsEntry = await getEntry("news", slug);
+
+const { Content } = await newsEntry.render();
+
+console.log(newsEntry);
+
+export async function getStaticPaths() {
+    const news = await getCollection("news");
+    const newsPub = news.filter(
+        (item) => item.data.published === true && item.slug.startsWith("en")
+    );
+    return newsPub.map((item) => {
+        return { params: { slug: item.slug } };
+    });
+}
+---
+
+<BaseLayout title={newsEntry.data.title} lang="en">
+    <h1>{newsEntry.data.title}</h1>
+    <div>---</div>
+    <time datetime={newsEntry.data.date.toString()}>{newsEntry.data.date}</time>
+    <p>
+        <Content />
+    </p>
+    <br />
+    <br />
+    <a href={getRelativeLocaleUrl("en", "news")}>Back to news</a>
+</BaseLayout>

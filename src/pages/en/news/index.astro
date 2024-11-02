@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const news = await getCollection("news").then((res) =>
+    res.filter((item) => item.slug.startsWith("en"))
+);
+
+const newsSorted = news.sort((a, b) => {
+    return b.data.date.valueOf() - a.data.date.valueOf();
+});
+console.log(news);
+---
+
+<BaseLayout title="News Index EN" lang="en">
+    <h1>News Index EN</h1>
+    <ul>
+        {
+            newsSorted.map((item) => {
+                return (
+                    <li>
+                        <a href={item.slug}>{item.data.title}</a>
+                    </li>
+                );
+            })
+        }
+    </ul>
+</BaseLayout>

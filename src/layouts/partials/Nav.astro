@@ -1,0 +1,21 @@
+---
+import LangSwitcher from "./LangSwitcher.astro";
+import { NAVIGATION } from "../../_settings";
+const { lang } = Astro.props;
+---
+
+<nav>
+    <ul>
+        {
+            NAVIGATION[lang].map((nav) => {
+                return (
+                    <li>
+                        <a href={nav.href}>{nav.title}</a>
+                    </li>
+                );
+            })
+        }
+    </ul>
+    <div>---</div>
+    <LangSwitcher />
+</nav>

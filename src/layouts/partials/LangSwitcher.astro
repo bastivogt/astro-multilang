@@ -1,0 +1,22 @@
+---
+import { NAVIGATION } from "../../_settings";
+
+const languages = Object.keys(NAVIGATION);
+console.log(languages);
+---
+
+<nav>
+    <ul>
+        {
+            languages.map((lang) => {
+                return (
+                    <li>
+                        <a class={lang} href={`/${lang}`}>
+                            {lang}
+                        </a>
+                    </li>
+                );
+            })
+        }
+    </ul>
+</nav>

@@ -1,0 +1,19 @@
+---
+import Nav from "./partials/Nav.astro";
+const { title, lang = "de" } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Multilang - {title}</title>
+    </head>
+    <body>
+        <Nav lang={lang} />
+        <main>
+            <slot />
+        </main>
+    </body>
+</html>
