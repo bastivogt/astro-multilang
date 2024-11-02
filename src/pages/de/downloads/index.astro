@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const downloads = await getCollection("downloads").then((res) =>
+    res.filter((item) => item.data.lang === "de")
+);
+console.log(downloads);
+---
+
+<BaseLayout title="News Index DE" lang="de">
+    <h1>Downloads Index DE</h1>
+    <ul>
+        {
+            downloads.map((item) => {
+                return (
+                    <li>
+                        <a
+                            href={`${getRelativeLocaleUrl("de", "downloads")}${item.slug}`}
+                        >
+                            {item.data.title}
+                        </a>
+                    </li>
+                );
+            })
+        }
+    </ul>
+</BaseLayout>

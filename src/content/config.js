@@ -11,6 +11,16 @@ const newsCollection = defineCollection({
         published: z.boolean().default(true)
     })
 });
+
+const downloadCollection = defineCollection({
+    type: "content",
+    schema: z.object({
+        title: z.string(),
+        lang: z.string(),
+        published: z.boolean().default(true)
+    })
+});
 export const collections = {
-  "news": newsCollection
+  "news": newsCollection,
+  "downloads": downloadCollection
 };

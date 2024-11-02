@@ -12,8 +12,13 @@ export const NAVIGATION = {
             published: true,
         },
         {
+            title: "Downloads",
+            href: getRelativeLocaleUrl("de", "downloads"),
+            published: true,
+        },
+        {
             title: "Kontakt",
-            href: getRelativeLocaleUrl("de", "contact"),
+            href: getRelativeLocaleUrl("de", "kontakt"),
             published: true,
         }
     ],
@@ -26,6 +31,11 @@ export const NAVIGATION = {
         {
             title: "News",
             href: getRelativeLocaleUrl("en", "news"),
+            published: true,
+        },
+        {
+            title: "Downloads",
+            href: getRelativeLocaleUrl("en", "downloads"),
             published: true,
         },
         {

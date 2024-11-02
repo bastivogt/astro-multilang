@@ -1,0 +1,34 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const { slug } = Astro.params;
+
+const dlEntry = await getEntry("downloads", slug);
+const { Content } = await dlEntry.render();
+
+export async function getStaticPaths() {
+    const dls = await getCollection("downloads");
+    const dlsPub = dls.filter(
+        (item) => item.data.published === true && item.data.lang === "en"
+    );
+    return dls.map((item) => {
+        return {
+            params: {
+                slug: item.slug,
+            },
+        };
+    });
+}
+---
+
+<BaseLayout title={dlEntry.data.title} lang="de">
+    <h1>{dlEntry.data.title}</h1>
+    <p>
+        <Content />
+    </p>
+    <br />
+    <br />
+    <a href={getRelativeLocaleUrl("en", "downloads")}>Back to downloads</a>
+</BaseLayout>
