@@ -1,13 +1,16 @@
 ---
 import LangSwitcher from "./LangSwitcher.astro";
 import { NAVIGATION } from "../../_settings";
-const { lang } = Astro.props;
+import { getlangFromUrl } from "../../helper";
+
+const url = new URL(Astro.request.url);
+const language = getlangFromUrl(url);
 ---
 
 <nav>
     <ul>
         {
-            NAVIGATION[lang].map((nav) => {
+            NAVIGATION[language].map((nav) => {
                 return (
                     <li>
                         <a href={nav.href}>{nav.title}</a>

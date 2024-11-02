@@ -1,17 +1,21 @@
 ---
 import Nav from "./partials/Nav.astro";
-const { title, lang = "de" } = Astro.props;
+import { getlangFromUrl } from "../helper";
+
+const language = getlangFromUrl(new URL(Astro.request.url));
+
+const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={language}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Multilang - {title}</title>
     </head>
     <body>
-        <Nav lang={lang} />
+        <Nav />
         <main>
             <slot />
         </main>

@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 }
 ---
 
-<BaseLayout title={newsEntry.data.title} lang="de">
+<BaseLayout title={newsEntry.data.title}>
     <h1>{newsEntry.data.title}</h1>
     <div>---</div>
     <time datetime={newsEntry.data.date.toString()}>{newsEntry.data.date}</time>
