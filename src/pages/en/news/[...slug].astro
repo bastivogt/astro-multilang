@@ -14,7 +14,7 @@ console.log(newsEntry);
 export async function getStaticPaths() {
     const news = await getCollection("news");
     const newsPub = news.filter(
-        (item) => item.data.published === true && item.slug.startsWith("en")
+        (item) => item.data.published === true && item.id.startsWith("en")
     );
     return newsPub.map((item) => {
         return { params: { slug: item.slug } };

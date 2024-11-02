@@ -3,7 +3,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 const news = await getCollection("news").then((res) =>
-    res.filter((item) => item.slug.startsWith("en"))
+    res.filter((item) => item.id.startsWith("en"))
 );
 
 const newsSorted = news.sort((a, b) => {
